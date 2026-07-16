@@ -1,0 +1,15 @@
+[Unit]
+description=fastapi demo application
+After=network.target
+
+[Service]
+User=sim
+Group=sim
+WorkingDirectory=/home/sim/app/src/
+Environment="PATH//home/sim/app/venv/bin/"
+ExecStart=/home/sim/app/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app  --bind 0.0.0.0:8000
+
+[Install]
+WantedBy=multi-user.target
+
+
